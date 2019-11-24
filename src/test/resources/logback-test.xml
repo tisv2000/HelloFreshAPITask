@@ -19,9 +19,16 @@
         </encoder>
     </appender>
 
+    <appender name="ALLURE" class="core.logging.ThreadLocalLogAppender">
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+    </appender>
+
     <root level="debug">
         <appender-ref ref="FILE"/>
         <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ALLURE"/>
     </root>
 
 </configuration>
