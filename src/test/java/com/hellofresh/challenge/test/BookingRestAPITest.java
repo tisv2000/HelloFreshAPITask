@@ -30,8 +30,8 @@ public class BookingRestAPITest {
     @Test(dataProviderClass = BookingDataProvider.class, dataProvider = "RandomBookingDataProvider")
     public void testCreateBooking(Booking bookingToCreate) {
         Response<CreatedBooking> response = createBooking(bookingToCreate);
-        Booking createdBooking = response.getResponseBodyEntity().getBooking();
         assertEquals(response.getStatusCode(), STATUS_CREATED);
+        Booking createdBooking = response.getResponseBodyEntity().getBooking();
         assertBookingsEqual(createdBooking, bookingToCreate, "bookingId,phone,email");
     }
 
@@ -59,8 +59,8 @@ public class BookingRestAPITest {
         int createdRoomId = createdBooking1.getRoomid();
         Booking createdBooking2 = createBooking(BookingDataRegistry.getRandomBookingWithSpecifiedId(createdRoomId)).getResponseBodyEntity().getBooking();
         Response<BookingList> response = getBookingsByRoomId(createdRoomId);
-        BookingList responseBodyEntity = response.getResponseBodyEntity();
         assertEquals(response.getStatusCode(), STATUS_OK);
+        BookingList responseBodyEntity = response.getResponseBodyEntity();
         assertTrue(responseBodyEntity.getBookings().size() >= 2);
         assertListContainsAllBookings(responseBodyEntity, "", createdBooking1, createdBooking2);
     }

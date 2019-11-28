@@ -23,7 +23,7 @@ public class BookingRestAPI {
                         .get(BASE_ENDPOINT_WITH_BOOKING_ID);
         log.info("GOTTEN BOOKING BY ID RESPONSE {}", response.asString());
 
-        return parseResponse(response, response.statusCode(), Booking.class);
+        return parseResponse(response, 200, Booking.class);
     }
 
     public static Response<BookingList> getBookingsByRoomId(int roomId) {
@@ -34,7 +34,7 @@ public class BookingRestAPI {
                         .get(BASE_URL);
         log.info("GOTTEN BOOKING BY ROOM ID RESPONSE {}", response.asString());
 
-        return parseResponse(response, response.statusCode(), BookingList.class);
+        return parseResponse(response, 200, BookingList.class);
     }
 
     public static Response<BookingList> getBookings() {
@@ -45,7 +45,7 @@ public class BookingRestAPI {
         log.info("GOTTEN BOOKINGS RESPONSE {}", response.asString());
         log.info("GOTTEN STATUS {}", response.getStatusCode());
 
-        return parseResponse(response, response.statusCode(), BookingList.class);
+        return parseResponse(response, 200, BookingList.class);
     }
 
     public static Response<CreatedBooking> createBooking(Booking bookingToCreate) {
@@ -60,6 +60,6 @@ public class BookingRestAPI {
         log.info("CREATING BOOKING RESPONSE {}", response.body().asString());
         log.info("CREATED BOOKING STATUS {}", response.getStatusCode());
 
-        return parseResponse(response, response.statusCode(), CreatedBooking.class);
+        return parseResponse(response, 201, CreatedBooking.class);
     }
 }

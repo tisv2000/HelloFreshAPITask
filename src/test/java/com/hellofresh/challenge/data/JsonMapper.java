@@ -11,13 +11,9 @@ public class JsonMapper {
                                                  Class<T> clazz) {
         T gottenObject = null;
         if (response.statusCode() == expectedStatus) {
-            gottenObject = readObjectFromResponseBody(response, clazz);
+            gottenObject = readObjectFromJson(response.body().asString(), clazz);
         }
         return new Response<T>(response.statusCode(), gottenObject);
-    }
-
-    public static <T> T readObjectFromResponseBody(io.restassured.response.Response response, Class<T> clazz) {
-        return readObjectFromJson(response.body().asString(), clazz);
     }
 
     private static <T> T readObjectFromJson(String json, Class<T> clazz) {
